@@ -39,15 +39,14 @@ proxy.auth = GitHubProvider(
 
 class CustomLoggingMiddleware(LoggingMiddleware):
     async def on_call_tool(self, context, call_next):
-        print(f"\n========== TOOL CALL ==========")
+        print(f"\nTOOL CALL")
         print(f"Tool: {context.message.name}")
         print(f"Args: {context.message.arguments}")
         try:
             result = await call_next(context)
-            print(f"---------- RESPONSE ----------\n{result}\n================================")
             return result
         except Exception as e:
-            print(f"!!! ERROR in {context.message.name}: {e} !!!")
+            print(f"ERROR in {context.message.name}: {e}")
             raise
 
 proxy.add_middleware(CustomLoggingMiddleware(
