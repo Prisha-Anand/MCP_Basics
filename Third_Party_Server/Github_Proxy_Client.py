@@ -11,7 +11,7 @@ async def main():
     async with Client("http://localhost:8000/mcp/", auth="oauth") as client:
         await client.ping()
         tools = await client.list_tools()
-        print("Available tools:", tools)
+        #print("Available tools:", tools)
         result = await client.call_tool(
         "search_repositories",
         {
